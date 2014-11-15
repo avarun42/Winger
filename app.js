@@ -1,7 +1,8 @@
-var express = require("express")
-var app = express()
-var http = require("http").createServer(app)
+var express = require("express");
+var app = express();
+var http = require("http").createServer(app);
 var bodyParser = require("body-parser");
+var io = require("socket.io").listen(http);
 var _ = require("underscore");
 
 app.set("ipaddr", "127.0.0.1");
