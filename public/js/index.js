@@ -61,7 +61,7 @@ function init() {
 
   /*
  When receiving a new chat message with the "incomingMessage" event,
- we'll prepend it to the messages section
+ we'll append it to the messages section
   */
   socket.on('incomingMessage', function (data) {
     var message = data.message;
