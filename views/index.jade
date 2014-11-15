@@ -8,16 +8,20 @@ html
     script(src='/js/index.js')
     title Winger
   body
-    div#messages
-    div#entry
-      div.inlineBlock
-        span Your name:
-          input(type="text", value="Anonymous")#name
-        br
-        form#messageForm
-          textarea(rows="4", cols="50", placeholder="Share something!", maxlength=200)#outgoingMessage
-          input(type="button", value="Share", disabled=true)#send
-      div.inlineBlock.topAligned
-        b Participants
-        br
-        div#participants
+    div.board
+      div.responsive-iframe
+        iframe(src="http://www.twiddla.com/WhiteBoard.aspx?sessionid=95&hide=chat,welcome,etherpad,roomsettings", frameborder="0", width="600", height="400", style="border:solid 1px #555;")
+    div.chat
+      div#messages
+      div#entry
+        div.inlineBlock
+          span Your name:
+            input(type="text", value="Anonymous")#name
+          br
+          form#messageForm
+            textarea(rows="4", cols="50", placeholder="Share something!", maxlength=200)#outgoingMessage
+            input(type="button", value="Share", disabled=true)#send
+        div.inlineBlock.topAligned
+          b Participants
+          br
+          div#participants
