@@ -57,5 +57,6 @@ textarea {
 
 #messages {
     overflow:hidden;
-    height: 80%;
+    max-height: 640px;
+    overflow-y: auto;
 }
