@@ -5,6 +5,16 @@ var bodyParser = require("body-parser");
 var io = require("socket.io").listen(http);
 var _ = require("underscore");
 
+/* 
+  The list of participants in our chatroom.
+  The format of each participant will be:
+  {
+    id: "sessionId",
+    name: "participantName"
+  }
+*/
+var participants = [];
+
 app.set("ipaddr", "127.0.0.1");
 app.set("port", 8080);
 
@@ -31,8 +41,49 @@ app.post("/message", function(request, response) {
     return response.json(400, {error: "Message is invalid"});
   }
 
+  //We also expect the sender's name with the message
+  var name = request.body.name;
+
+  //Let our chatroom know there was a new message
+  io.sockets.emit("incomingMessage", {message: message, name: name});
+
   //Looks good, let the client know
   response.json(200, {message: "Message received"});
+
+});
+
+/* Socket.IO events */
+io.on("connection", function(socket){
+  
+  /*
+    When a new user connects to our server, we expect an event called "newUser"
+    and then we'll emit an event called "newConnection" with a list of all 
+    participants to all connected clients
+  */
+  socket.on("newUser", function(data) {
+    participants.push({id: data.id, name: data.name});
+    io.sockets.emit("newConnection", {participants: participants});
+  });
+
+  /*
+    When a user changes his name, we are expecting an event called "nameChange" 
+    and then we'll emit an event called "nameChanged" to all participants with
+    the id and new name of the user who emitted the original message
+  */
+  socket.on("nameChange", function(data) {
+    _.findWhere(participants, {id: socket.id}).name = data.name;
+    io.sockets.emit("nameChanged", {id: data.id, name: data.name});
+  });
+
+  /* 
+    When a client disconnects from the server, the event "disconnect" is automatically 
+    captured by the server. It will then emit an event called "userDisconnected" to 
+    all participants with the id of the client that disconnected
+  */
+  socket.on("disconnect", function() {
+    participants = _.without(participants,_.findWhere(participants, {id: socket.id}));
+    io.sockets.emit("userDisconnected", {id: socket.id, sender:"system"});
+  });
 
 });
 

@@ -1,4 +1,13 @@
+
 {
+  "name": "Winger",
+  "version": "0.0.1",
+  "description": "A collaborative study group environment",
+  "author": "Varun Arora <me@varunarora.net>",
+  "contributors": [{
+    "name": "Foo Bar",
+    "email": "foo.bar@example.com"
+  }],
   "dependencies": {
     "express": "4.6.1",
     "jade": "1.4.2",
