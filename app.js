@@ -3,68 +3,29 @@ var session = require('express-session');
 var app = express();
 var http = require("http").createServer(app);
 var bodyParser = require("body-parser");
+
 var io = require("socket.io").listen(http);
 var passport = require('passport');
-var WindowsLiveStrategy = require('passport-windowslive').Strategy;
 var _ = require("underscore");
+var MongoStore = require('connect-mongo')({ session: session });
 var mongoose = require('mongoose');
 
+/**
+ * API keys and Passport configuration.
+ */
+
+var secrets = require('./config/secrets');
+var passportConf = require('./config/passport');
+
+/**
+ * Connect to MongoDB.
+ */
+
+mongoose.connect(secrets.db);
+mongoose.connection.on('error', function() {
+  console.error('MongoDB Connection Error. Make sure MongoDB is running.');
+});
 var User = require('./models/User');
-
-var WINDOWS_LIVE_CLIENT_ID = "0000000048131F76";
-var WINDOWS_LIVE_CLIENT_SECRET = "IXTlXb4o1xLuxRxL3mwbhmAofBf5XRa8";
-
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete Windows Live profile is
-//   serialized and deserialized.
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findOne({
-        'microsoft.id': profile.id 
-    }, function(err, user) {
-    done(err, user);
-  });
-});
-
-passport.use(new WindowsLiveStrategy({
-    clientID: WINDOWS_LIVE_CLIENT_ID,
-    clientSecret: WINDOWS_LIVE_CLIENT_SECRET,
-    callbackURL: "http://winger.ngrok.com/auth/windowslive/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOne({
-        'microsoft.id': profile.id 
-    }, function(err, user) {
-        if (err) {
-            return done(err);
-        }
-        //No user was found... so create a new user with values from Facebook (all the profile. stuff)
-        if (!user) {
-            user = new User({
-                name: profile.displayName,
-                email: profile.emails[0].value,
-                provider: 'microsoft',
-                //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
-                microsoft: profile._json
-            });
-            user.save(function(err) {
-                if (err) console.log(err);
-                return done(err, user);
-            });
-        } else {
-            //found user. Return
-            return done(err, user);
-        }
-    });
-  }
-));
 
 /* 
   The list of participants in our chatroom.
@@ -86,7 +47,7 @@ app.use(express.static("public", __dirname + "/public"));
 
 app.use(bodyParser.json());
 
-app.use(session({secret: 'fat people'}));
+app.use(session({secret: secrets.sessionSecret}));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
@@ -114,7 +75,7 @@ app.get('/auth/windowslive',
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
-//   which, in this example, will redirect the user to the hub page.
+//   which will redirect the user to the hub page.
 app.get('/auth/windowslive/callback', 
   passport.authenticate('windowslive', { failureRedirect: '/' }),
   function(req, res) {
@@ -155,16 +116,6 @@ app.post("/message", function(req, res) {
   res.json(200, {message: "Message received"});
 
 });
-
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/');
-}
 
 /* Socket.IO events */
 io.on("connection", function(socket){

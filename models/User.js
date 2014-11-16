@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
-  email: { type: String, unique: true, lowercase: true },
-  // id: String,
+  photo: String,
+  id: String,
 
   provider: String,
   microsoft: String,
@@ -12,8 +12,7 @@ var userSchema = new mongoose.Schema({
   profile: {
     name: { type: String, default: '' },
     gender: { type: String, default: '' },
-    website: { type: String, default: '' },
-    picture: { type: String, default: '' }
+    website: { type: String, default: '' }
   }
 });
 
