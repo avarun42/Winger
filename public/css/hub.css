@@ -1,6 +1,23 @@
+body {
+	background-color: #DDD;
+	font-family: 'Helvetica Neue', 'Helvetica', 'Ariel', sans-serif;
+}
+
 .leftbar, .middlebar, .rightbar {
 	display: inline-block;
 	vertical-align: middle;
+
+	border-radius: 10px;
+	background-color: #FFF;
+	padding: 2% 2%;
+	margin: 1% 1%;
+
+	box-shadow: 1px 1px 1px #888888;
+}
+
+.accordionWrapper {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .topbar {
@@ -8,6 +25,8 @@
 	display: block;
 	height: 100px;
 	z-index: -100;
+
+	background-color: #3b5998;
 }
 
 .userIcon {
@@ -15,19 +34,37 @@
 }
 
 .leftbar {
-	width: 35%;
-	padding-left: 5%;
+	width: 30%;
+	padding-left: 2%;
+
+	text-align: center;
 }
 
 .middlebar {
-	width: 30%;
+	width: 20%;
+	padding-left: 60px;
 }
 
 .rightbar {
-	width: 30%;
+	width: 20%;
+	padding-left: 60px;
 }
 
 .accordionWrapper {
-	width: 60%;
-	height: 500px;
+	width: 80%;
+	height: 550px;
+}
+
+li {
+	list-style-type: none;
+	display: block;
+	float: left;
+
+	margin-right: 20px;
+
+
+}
+
+ul {
+		list-style-position: outside;
 }
