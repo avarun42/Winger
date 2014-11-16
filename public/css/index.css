@@ -31,7 +31,7 @@ body {
  	top: 0; left: 0; bottom: 0; right: 0;
 
  	width: 800px;
- 	height: 400px;
+ 	height: 375px;
 
  	text-align: center;
  	display: block;
@@ -48,8 +48,10 @@ body {
 
 h2 {
 	font-family: 'Helvetical Neue', 'Helvetica', 'Arial', sans-serif;
-	font-size: 2.5em;
+	font-size: 2.3em;
 	color: #CCC;
+	margin-top: 20px;
+	margin-bottom: 40px;
 }
 
 
