@@ -25,10 +25,14 @@ app.use(express.static("public", __dirname + "/public"));
 
 app.use(bodyParser.json());
 
+//route homepage
 app.get("/", function(request, response) {
-
   response.render("index");
+});
 
+//route boards
+app.get("/board", function(request, response) {
+  response.render("board");
 });
 
 app.post("/message", function(request, response) {
