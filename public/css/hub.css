@@ -68,3 +68,7 @@ li {
 ul {
 		list-style-position: outside;
 }
+
+a:visited{
+  color:blue;
+}

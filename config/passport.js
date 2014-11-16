@@ -16,7 +16,7 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   User.findOne({
-        'microsoft.id': id
+        id: id
     }, function(err, user) {
     done(err, user);
   });
@@ -29,13 +29,14 @@ passport.use(new WindowsLiveStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({
-        'microsoft.id': profile.id 
+        id: profile.id 
     }, function(err, user) {
         if (err) {
             return done(err);
         }
         //No user was found... so create a new user with values from Facebook (all the profile. stuff)
         if (!user) {
+          console.log(profile.photos[0].value);
             user = new User({
                 id: profile.id,
                 name: profile.displayName,

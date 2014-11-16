@@ -47,7 +47,7 @@ app.use(express.static("public", __dirname + "/public"));
 
 app.use(bodyParser.json());
 
-app.use(session({secret: secrets.sessionSecret}));
+app.use(session({secret: secrets.sessionSecret, resave: true, saveUninitialized: true}));
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
@@ -89,10 +89,15 @@ app.get('/logout', function(req, res){
 
 //route boards
 app.get("/board", function(req, res) {
-  res.render("board", {locals: { user: req.user }});
+  res.render("board", { user: req.user });
 });
 
 app.get("/hub", function(req, res) {
+  if (!req.user) {
+    res.redirect('/');
+  }
+  req.user._id = req.user._id.toHexString();
+  console.log(req.user)
   res.render("hub", { user: req.user });
 });
 

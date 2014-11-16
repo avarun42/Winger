@@ -8,9 +8,9 @@ var userSchema = new mongoose.Schema({
   microsoft: String,
   // google: String,
   tokens: Array,
+  name: { type: String, default: '' },
 
   profile: {
-    name: { type: String, default: '' },
     gender: { type: String, default: '' },
     website: { type: String, default: '' }
   }
