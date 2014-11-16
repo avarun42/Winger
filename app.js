@@ -32,7 +32,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new WindowsLiveStrategy({
     clientID: WINDOWS_LIVE_CLIENT_ID,
     clientSecret: WINDOWS_LIVE_CLIENT_SECRET,
-    callbackURL: "http://4fe37ae7.ngrok.com/auth/windowslive/callback"
+    callbackURL: "http://winger.ngrok.com/auth/windowslive/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
