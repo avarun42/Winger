@@ -23,9 +23,9 @@
     position:fixed;
     height:100%;
     background-color: #22313F;
-    width:250px;
+    width:400px;
     right:0px;
-    margin-right: -250px;
+    margin-right: -400px;
 }
 .sidebar-button{
     position:fixed;
@@ -33,7 +33,7 @@
     height:50px;
     right:0px;
     background-color: #22313F;
-    top:300px;
+    top:400px;
 }
 
 span{
@@ -42,4 +42,9 @@ span{
 
 #messages{
 	color: #FFF;
+}
+
+span.name {
+	font-weight: bold;
+	color: #999;
 }
