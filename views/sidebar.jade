@@ -1,47 +1,16 @@
+div.sidebar-button
+  div.triangle
 div.sidebar.inlineBlock
-  div.storage
-
   div.chat
     div#messages
     div#entry
-      //- div.inlineBlock.topAligned
-      //-   b Participants
-      //-   br
-      //-   div#participants
+      div.inlineBlock.topAligned
+        //- b Participants
+        //- div#participants
       div.inlineBlock
         span Your name:
           input(type="text", value="")#name
         br
         form#messageForm
-          textarea(rows="4", cols="40", placeholder="Chat with your study group.", maxlength=200)#outgoingMessage
+          textarea(rows="4",cols="40", placeholder="Chat with your study group.", maxlength=200)#outgoingMessage
           input(type="button", value="Send", disabled=true)#send
-
-
-
-
-
-
-
-
-
-//- #accordion
-//-       h3 Section 1
-//-       div
-//-         p
-//-           iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21118&authkey=AGxZDVtRFZh3Dug&em=2', width='476', height='288', frameborder='0', scrolling='no')
-//-       h3 Section 2
-//-       div
-//-         p
-//-           iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21119&authkey=ADyBu2WeWg82pDg&em=2', width='476', height='288', frameborder='0', scrolling='no')
-//-       h3 Section 3
-//-       div
-//-         p
-//-           iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21123&authkey=ACdw7O7J9gasJdY&em=2', width='476', height='288', frameborder='0', scrolling='no')
-//-         ul
-//-           li List item one
-//-           li List item two
-//-           li List item three
-//-       h3 Section 4
-//-       div
-//-         p
-//-           iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21125&authkey=AETwNgyI-G5UR9s&em=2', width='476', height='288', frameborder='0', scrolling='no')
