@@ -67,6 +67,7 @@ function init() {
     var message = data.message;
     var name = data.name;
     $('#messages').append('<b>' + name + '</b><br />' + message + '<hr />');
+    $("#messages").scrollTop($("#messages")[0].scrollHeight);
   });
 
   /*
