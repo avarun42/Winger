@@ -113,7 +113,7 @@ app.get("/hub", function(req, res) {
   res.render("hub");
 });
 
-app.post("/message", ensureAuthenticated, function(req, res) {
+app.post("/message", function(req, res) {
 
   //The request body expects a param named "message"
   var message = req.body.message;
