@@ -3,8 +3,10 @@ html
   head
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans')
     link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/sidebar.css')
     link(rel='stylesheet', href='/css/hub.css')
     script(src='//code.jquery.com/jquery-1.11.0.min.js')
+    script(src='/js/board_slide.js')
     script(src='/socket.io/socket.io.js')
     script(src='/js/chat.js')
     //- link(rel='stylesheet', href='//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css')
@@ -17,6 +19,9 @@ html
     //-   });
     title Hub - Winger
   body
+    include sidebar.jade
+    div.topbar
+
     div.leftbar
       div.userInfo
         img(src="/assets/Winger_Symbol.png").userIcon
@@ -31,8 +36,8 @@ html
         h1
           Goals
         div.goalBox
-          a(href="board") Testing
-
-
-
-    include sidebar.jade
+          a(href="board") Problem 1 Board
+        div.goalBox
+          a(href="board") Problem 2 Board
+        div.goalBox
+          a(href="board") Problem 3 Board

@@ -105,11 +105,11 @@ app.get('/logout', function(req, res){
 });
 
 //route boards
-app.get("/board", ensureAuthenticated, function(req, res) {
+app.get("/board", function(req, res) {
   res.render("board");
 });
 
-app.get("/hub", ensureAuthenticated, function(req, res) {
+app.get("/hub", function(req, res) {
   res.render("hub");
 });
 

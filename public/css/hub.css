@@ -1,3 +1,20 @@
+.topbar {
+	width: 100%;
+	display: block;
+	height: 50px;
+	z-index: -100;
+}
+
 .userIcon {
 	max-width: 128px;
+}
+
+.leftbar {
+	width: 40%;
+	display: inline-block;
+}
+
+.middlebar {
+	width: 60%;
+	display: inline-block;
 }
