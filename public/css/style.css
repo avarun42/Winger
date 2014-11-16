@@ -7,7 +7,7 @@ body {
 .responsive-iframe {
     position: relative;
     /*padding-bottom: 56.25%;*/
-    padding-bottom: 72%; /*ratio?*/
+    padding-bottom: 50%; /*ratio?*/
     /*padding-top: 35px;*/
     height: 0;
     overflow: hidden;
@@ -24,13 +24,13 @@ body {
 
 .board {
     height: 100vh;
-    width: 80%;
+    width: 100%;
 }
 
-.sidebar {
+/*.sidebar {
     height: 100vh;
     width: 20%;
-}
+}*/
 
 
 .chat {
@@ -76,4 +76,22 @@ textarea {
     display: block;
     margin-right: auto;
     margin-left: auto;
+}
+
+
+
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    .responsive-iframe {
+    position: relative;
+    /*padding-bottom: 56.25%;*/
+    padding-bottom: 70%; /*ratio?*/
+    /*padding-top: 35px;*/
+    height: 0;
+    overflow: hidden;
+}
 }

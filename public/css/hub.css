@@ -1,7 +1,12 @@
+.leftbar, .middlebar, .rightbar {
+	display: inline-block;
+	vertical-align: middle;
+}
+
 .topbar {
 	width: 100%;
 	display: block;
-	height: 50px;
+	height: 100px;
 	z-index: -100;
 }
 
@@ -10,11 +15,19 @@
 }
 
 .leftbar {
-	width: 40%;
-	display: inline-block;
+	width: 35%;
+	padding-left: 5%;
 }
 
 .middlebar {
+	width: 30%;
+}
+
+.rightbar {
+	width: 30%;
+}
+
+.accordionWrapper {
 	width: 60%;
-	display: inline-block;
+	height: 500px;
 }

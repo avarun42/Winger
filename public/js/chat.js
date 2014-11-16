@@ -66,7 +66,7 @@ function init() {
   socket.on('incomingMessage', function (data) {
     var message = data.message;
     var name = data.name;
-    $('#messages').append('<b>' + name + '</b><br />' + message + '<hr />');
+    $('#messages').append('<span class="name">' + name + '</span><br />' + message + '<hr />');
     $("#messages").scrollTop($("#messages")[0].scrollHeight);
   });
 

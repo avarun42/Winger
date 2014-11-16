@@ -9,14 +9,16 @@ html
     script(src='/js/board_slide.js')
     script(src='/socket.io/socket.io.js')
     script(src='/js/chat.js')
-    //- link(rel='stylesheet', href='//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css')
-    //- script(src='//code.jquery.com/jquery-1.10.2.js')
-    //- script(src='//code.jquery.com/ui/1.11.2/jquery-ui.js')
+
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css')
+    script(src='//code.jquery.com/jquery-1.10.2.js')
+    script(src='//code.jquery.com/ui/1.11.2/jquery-ui.js')
     link(rel='stylesheet', href='/resources/demos/style.css')
-    //- script
-    //-   $(function() {
-    //-   $( "#accordion" ).accordion();
-    //-   });
+    script
+      $(function() {
+      $( "#accordion" ).accordion();
+      });
+
     title Hub - Winger
   body
     include sidebar.jade
@@ -25,16 +27,38 @@ html
     div.leftbar
       div.userInfo
         img(src="/assets/Winger_Symbol.png").userIcon
-        h1 awang1@andrew.cmu.edu
+        h2 awang1@andrew.cmu.edu
+
+        div.accordionWrapper
+          #accordion
+            h3 Section 1
+            div
+              p
+                iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21118&authkey=AGxZDVtRFZh3Dug&em=2', width='400', height='288', frameborder='0', scrolling='no')
+            h3 Section 2
+            div
+              p
+                iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21119&authkey=ADyBu2WeWg82pDg&em=2', width='400', height='288', frameborder='0', scrolling='no')
+            h3 Section 3
+            div
+              p
+                iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21123&authkey=ACdw7O7J9gasJdY&em=2', width='400', height='288', frameborder='0', scrolling='no')
+            h3 Section 4
+            div
+              p
+                iframe(src='https://onedrive.live.com/embed?cid=436EEDB9A3D2925A&resid=436EEDB9A3D2925A%21125&authkey=AETwNgyI-G5UR9s&em=2', width='400', height='288', frameborder='0', scrolling='no')  
+
+    div.middlebar
       div.groups
+        h2 Groups
         ul
           li Calculus AB
           li Physics 2
           li Chemistry
-    div.middlebar
+
+    div.rightbar
       div.goals
-        h1
-          Goals
+        h2 Goals
         div.goalBox
           a(href="board") Problem 1 Board
         div.goalBox
