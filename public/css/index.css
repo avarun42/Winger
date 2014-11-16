@@ -13,8 +13,12 @@ body {
 	position: relative;*/
 }
 
+.logo {
+	max-width: 700px;
+}
+
 .verticalCenter {
-	width: 600px;
+	width: 1000px;
 	height: 100vh;
 }
 
@@ -26,8 +30,8 @@ body {
  	position: absolute;
  	top: 0; left: 0; bottom: 0; right: 0;
 
- 	width: 500px;
- 	height: 325px;
+ 	width: 800px;
+ 	height: 400px;
 
  	text-align: center;
  	display: block;
