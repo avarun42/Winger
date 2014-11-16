@@ -105,15 +105,15 @@ app.get('/logout', function(req, res){
 });
 
 //route boards
-app.get("/board", function(req, res) {
+app.get("/board", ensureAuthenticated, function(req, res) {
   res.render("board");
 });
 
-app.get("/hub", function(req, res) {
+app.get("/hub", ensureAuthenticated, function(req, res) {
   res.render("hub");
 });
 
-app.post("/message", function(req, res) {
+app.post("/message", ensureAuthenticated, function(req, res) {
 
   //The request body expects a param named "message"
   var message = req.body.message;
@@ -133,6 +133,16 @@ app.post("/message", function(req, res) {
   res.json(200, {message: "Message received"});
 
 });
+
+// Simple route middleware to ensure user is authenticated.
+//   Use this route middleware on any resource that needs to be protected.  If
+//   the request is authenticated (typically via a persistent login session),
+//   the request will proceed.  Otherwise, the user will be redirected to the
+//   login page.
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/')
+}
 
 /* Socket.IO events */
 io.on("connection", function(socket){
