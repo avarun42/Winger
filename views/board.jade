@@ -13,20 +13,4 @@ html
     div.board.inlineBlock
       div.responsive-iframe
         iframe(src="http://www.twiddla.com/WhiteBoard.aspx?sessionid=895&hide=chat,welcome,etherpad,roomsettings", frameborder="0", width="600", height="400", style="border:solid 1px #555;")
-    div.sidebar-button
-      div.triangle
-    div.sidebar.inlineBlock
-      div.chat
-        div#messages
-        div#entry
-          //- div.inlineBlock.topAligned
-          //-   b Participants
-          //-   br
-          //-   div#participants
-          div.inlineBlock
-            span Your name:
-              input(type="text", value="")#name
-            br
-            form#messageForm
-              textarea(rows="4", cols="40", placeholder="Chat with your study group.", maxlength=200)#outgoingMessage
-              input(type="button", value="Send", disabled=true)#send
+    include sidebar.jade
