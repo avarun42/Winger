@@ -10,7 +10,7 @@ html
   body
     div.board.inlineBlock
       div.responsive-iframe
-        iframe(src="http://www.twiddla.com/WhiteBoard.aspx?sessionid=395&hide=chat,welcome,etherpad,roomsettings", frameborder="0", width="600", height="400", style="border:solid 1px #555;")
+        iframe(src="http://www.twiddla.com/WhiteBoard.aspx?sessionid=12395&hide=chat,welcome,etherpad,roomsettings", frameborder="0", width="600", height="400", style="border:solid 1px #555;")
     div.sidebar.inlineBlock
       div.chat
         div#messages
@@ -21,8 +21,8 @@ html
           //-   div#participants
           div.inlineBlock
             span Your name:
-              input(type="text", value="Anonymous")#name
+              input(type="text", value="")#name
             br
             form#messageForm
-              textarea(rows="4", cols="50", placeholder="Share something!", maxlength=200)#outgoingMessage
-              input(type="button", value="Share", disabled=true)#send
+              textarea(rows="4", cols="50", placeholder="Chat with your study group.", maxlength=200)#outgoingMessage
+              input(type="button", value="Send", disabled=true)#send
