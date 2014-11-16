@@ -52,7 +52,7 @@ app.use(passport.session());
 
 //route homepage
 app.get("/", function(req, res) {
-  res.render("index", { user: req.user });
+  res.render("index");
 });
 
 // GET /auth/windowslive
@@ -86,11 +86,11 @@ app.get('/logout', function(req, res){
 
 //route boards
 app.get("/board", function(req, res) {
-  res.render("board");
+  res.render("board", {locals: { user: req.user }});
 });
 
 app.get("/hub", function(req, res) {
-  res.render("hub");
+  res.render("hub", { user: req.user });
 });
 
 app.post("/message", function(req, res) {

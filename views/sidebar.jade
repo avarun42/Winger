@@ -1,18 +1,16 @@
 div.sidebar-button
   div.triangle
 div.sidebar.inlineBlock
-
-
   div.chat
     div#messages
     div#entry
       div.inlineBlock.topAligned
-        //- b Participants
-        //- div#participants
+        b Participants
+        div#participants
       div.inlineBlock
         span Your name:
           input(type="text", value="")#name
         br
         form#messageForm
           textarea(rows="4",cols="40", placeholder="Chat with your study group.", maxlength=200)#outgoingMessage
-          input(type="button", value="Send", disabled=true)#send
+          input(type="button", value="Send", disabled=false)#send
