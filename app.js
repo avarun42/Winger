@@ -37,6 +37,9 @@ var User = require('./models/User');
 */
 var participants = [];
 
+app.set("ipaddr", "127.0.0.1");
+app.set("port", 8080);
+
 app.set("views", __dirname + "/views");
 app.set("view engine", "jade");
 //Specify where the static content is
@@ -149,4 +152,6 @@ io.on("connection", function(socket){
 
 });
 
-app.listen(8080);
+http.listen(app.get("port"), app.get("ipaddr"), function() {
+  console.log("Server up and running. Go to http://" + app.get("ipaddr") + ":" + app.get("port"));
+});
