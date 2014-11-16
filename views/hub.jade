@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/hub.css')
+    script(src='//code.jquery.com/jquery-1.11.0.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/chat.js')
+    title Hub - Winger
+  body
+  	div.leftbar
+  		div.userInfo
+  		div.groups
+	div.middlebar
+  		div.goals
+    include sidebar.jade
