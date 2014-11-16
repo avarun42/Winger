@@ -3,6 +3,7 @@ var session = require('express-session');
 var app = express();
 var http = require("http").createServer(app);
 var bodyParser = require("body-parser");
+var favicon = require("serve-favicon");
 var io = require("socket.io").listen(http);
 var passport = require('passport');
 var WindowsLiveStrategy = require('passport-windowslive').Strategy;
@@ -10,6 +11,8 @@ var _ = require("underscore");
 
 var WINDOWS_LIVE_CLIENT_ID = "0000000048131F76"
 var WINDOWS_LIVE_CLIENT_SECRET = "IXTlXb4o1xLuxRxL3mwbhmAofBf5XRa8";
+
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
