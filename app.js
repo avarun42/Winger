@@ -7,6 +7,9 @@ var io = require("socket.io").listen(http);
 var passport = require('passport');
 var WindowsLiveStrategy = require('passport-windowslive').Strategy;
 var _ = require("underscore");
+var mongoose = require('mongoose');
+
+var User = require('./models/User');
 
 var WINDOWS_LIVE_CLIENT_ID = "0000000048131F76";
 var WINDOWS_LIVE_CLIENT_SECRET = "IXTlXb4o1xLuxRxL3mwbhmAofBf5XRa8";
@@ -19,11 +22,15 @@ var WINDOWS_LIVE_CLIENT_SECRET = "IXTlXb4o1xLuxRxL3mwbhmAofBf5XRa8";
 //   have a database of user records, the complete Windows Live profile is
 //   serialized and deserialized.
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
+passport.deserializeUser(function(id, done) {
+  User.findOne({
+        'microsoft.id': profile.id 
+    }, function(err, user) {
+    done(err, user);
+  });
 });
 
 passport.use(new WindowsLiveStrategy({
@@ -32,14 +39,29 @@ passport.use(new WindowsLiveStrategy({
     callbackURL: "http://winger.ngrok.com/auth/windowslive/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    // asynchronous verification, for effect...
-    process.nextTick(function () {
-      
-      // To keep the example simple, the user's Windows Live profile is returned
-      // to represent the logged-in user.  In a typical application, you would
-      // want to associate the Windows Live account with a user record in your
-      // database, and return that user instead.
-      return done(null, profile);
+    User.findOne({
+        'microsoft.id': profile.id 
+    }, function(err, user) {
+        if (err) {
+            return done(err);
+        }
+        //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+        if (!user) {
+            user = new User({
+                name: profile.displayName,
+                email: profile.emails[0].value,
+                provider: 'microsoft',
+                //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
+                microsoft: profile._json
+            });
+            user.save(function(err) {
+                if (err) console.log(err);
+                return done(err, user);
+            });
+        } else {
+            //found user. Return
+            return done(err, user);
+        }
     });
   }
 ));
